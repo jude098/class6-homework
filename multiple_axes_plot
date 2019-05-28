@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+
+import matplotlib
+matplotlib.use("TkAgg")
+
+import matplotlib.pyplot as plt
+import os
+
+
+
+df = pd.read_csv(filepath_or_buffer='/.../.../downloads/winedata2.csv',
+                 sep=',',
+                 header=0)
+
+df.columns = ['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols', 'flavanoids',
+              'nonflavanoid_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'od280 od315_of_diluted_wines',
+              'proline']
+
+os.makedirs('plots/8-matplotlib_multiple_plot_axes', exist_ok=True)
+
+plt.style.use("ggplot")
+
+fig, axes = plt.subplots(1, 1, figsize=(5, 5))
+axes.grid(axis='y', alpha=0.5)
+axes.scatter(df['alcohol'], df['total_phenols'])
+axes.scatter(df['alcohol'], df['color_intensity'])
+axes.scatter(df['alcohol'], df['class'])
+axes.set_title(f'Alcohol comparisons')
+axes.legend()
+
+
+plt.show()
