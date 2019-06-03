@@ -1,0 +1,26 @@
+#seaborn
+#source: https://towardsdatascience.com/introduction-to-data-visualization-in-python-89a54c97fbed
+
+import matplotlib
+matplotlib.use("TkAgg")
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+import seaborn as sns
+
+
+df = pd.read_csv(filepath_or_buffer='/../../downloads/winedata2.csv',
+                      sep=',',
+                      header=0)
+
+df.columns = ['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols', 'flavanoids',
+              'nonflavanoid_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'od280 od315_of_diluted_wines',
+              'proline']
+
+print(df.head())
+
+sns.scatterplot(x='alcohol', y='ash', hue='class', data=df)
+
+plt.show()
+
